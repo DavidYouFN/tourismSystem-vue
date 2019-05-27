@@ -31,29 +31,6 @@
 					<el-form-item label="服务类型">
 						<el-input v-model="formData.serviceType"></el-input>
 					</el-form-item>
-
-				<!--	<el-form-item label="上传店铺头像">
-						<el-upload
-						  class="avatar-uploader"
-						  :action="baseUrl + '/upload/uploadFile'"
-						  :show-file-list="false"
-						  :on-success="handleShopAvatarScucess"
-						  :before-upload="beforeAvatarUpload">
-						  <img v-if="formData.uploadUrl" :src="baseImgPath + formData.uploadUrl" class="avatar">
-						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-						</el-upload>
-					</el-form-item>
-					<el-form-item label="上传营业执照">
-						<el-upload
-						  class="avatar-uploader"
-						  :action="baseUrl + '/v1/addimg/shop'"
-						  :show-file-list="false"
-						  :on-success="handleBusinessAvatarScucess"
-						  :before-upload="beforeAvatarUpload">
-						  <img v-if="formData.business_license_image" :src="baseImgPath + formData.business_license_image" class="avatar">
-						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-						</el-upload>
-					</el-form-item>-->
 					<el-form-item class="button_submit">
 						<el-button type="primary" @click="submitForm('formData')">立即创建</el-button>
 					</el-form-item>

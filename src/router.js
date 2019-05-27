@@ -12,15 +12,16 @@ import userList from './views/userList.vue'
 import shopList from './views/shopList.vue'
 import commodityList from './views/commodityList.vue'
 import orderList from './views/orderList.vue'
-import adminList from './views/adminList.vue'
 import addCommodity from './views/addCommodity.vue'
 import addShop from './views/addShop.vue'
+import checkStrategy from './views/checkStrategy.vue'
 import airTicket from './views/TMAirTicket.vue'
 import independentTravel from './views/TMIndependentTravel.vue'
 import strategy from './views/TMStrategy.vue'
 import adminSet from './views/adminSet.vue'
-import myOrder from './views/MyOrder.vue'
 import adminLogin from './views/adminLogin.vue'
+import commodityDetail from './views/TMCommodityDetail.vue'
+import visitor from './views/visitor.vue'
 import TMTourList  from './views/TMTour/TMTourList.vue'
 import TMTourDetail  from './views/TMTour/TMTourDetail.vue'
 
@@ -101,9 +102,9 @@ export default new Router({
               meta: ['数据管理', '订单列表'],
           },
               {
-              path: '/adminList',
-              component: adminList,
-              meta: ['数据管理', '管理员列表'],
+              path: '/checkStrategy',
+              component: checkStrategy,
+              meta: ['数据管理', '攻略审核'],
           },
               {
                   path: '/addCommodity',
@@ -118,6 +119,10 @@ export default new Router({
                    path: '/adminSet',
                   component: adminSet,
                   meta: ['设置', '管理员设置'],
+              },{
+                   path: '/visitor',
+                  component: visitor,
+                  meta: ['图表', '数据统计分布'],
               },]
       }
       ,
@@ -143,6 +148,10 @@ export default new Router({
           component:strategy,
       },
       {
+          path:'/commodityDetail',
+          name:'commodityDetail',
+          component:commodityDetail,
+      },
           path:'/myOrder',
           name:'myOrder',
           component:myOrder,

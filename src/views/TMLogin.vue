@@ -71,7 +71,7 @@ export default {
     },
     data(){
         return{
-            id:'',
+            userId:'',
             username:'',
             password:'',
             imgData:'user/getVerify',
@@ -123,30 +123,9 @@ export default {
                     sessionStorage.username= response.data.data.username
                     sessionStorage.setItem("username",username)
                     sessionStorage.setItem("userId",userId)
-                }else{
-                    this.$alert("错误！！："+response.data.msg, '提示', {
-                        confirmButtonText: '确定',
-                        callback: action => {
-                            this.$message({
-                            type: 'info',
-                            message: `action: ${ action }`
-                            });
-                        }
-                    });
                 }
                 
             })
-            .catch(error=> {
-                this.$alert("错误！！："+error, '提示', {
-                        confirmButtonText: '确定',
-                        callback: action => {
-                            this.$message({
-                            type: 'info',
-                            message: `action: ${ action }`
-                            });
-                        }
-                    });
-            });
         },
         //获取图片验证码
         getImg:function(){
@@ -161,8 +140,6 @@ export default {
                 }else{
                     this.$alert("错误！！：验证码错误", '提示', {
                         confirmButtonText: '确定',
-                        callback: action => {
-                        }
                     });
                 }
             })

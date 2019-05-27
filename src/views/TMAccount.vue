@@ -8,14 +8,24 @@
                         style="width: 100%">
                     <el-table-column
                             label="我的账户余额"
-                            prop="propertyData"><a>元</a>
+                            prop="propertyData">
                     </el-table-column>
                 </el-table>
-                <el-button>充值</el-button>
+                <el-button @click="addCredit()">充值</el-button>
                 <el-button>提现</el-button>
             </el-tab-pane>
         </el-tabs>
-
+        <el-dialog title="充值" :visible.sync="dialogFormVisible">
+            <el-form v-model="form1" :rules="rules" ref="form1">
+                <el-form-item label="充值金额" >
+                    <el-input v-model="form1.property"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addProperty">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -28,6 +38,10 @@
                 input: '',
                 tableData:[{
                     propertyData:'',
+                }],
+                dialogFormVisible:false,
+                form1:[{
+                        property:'',
                 }]
             }
         },
@@ -35,6 +49,12 @@
             this.initData();
         },
         methods: {
+            addCredit(){
+                this.dialogFormVisible = true;
+            },
+            dialogFormVisible(row) {
+                this.dialogFormVisible = false;
+            },
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
             },
@@ -49,7 +69,14 @@
                             this.tableData[0].propertyData = res.data.data.propertyData;
                         }
                     })
-            }
+            },
+            addProperty(){
+                let param = new URLSearchParams();
+                param.append('property', this.form1.property);
+                param.append('userId',this.userId);
+                window.open("http://localhost:8081/user/addProperty?property="+this.form1.property+"&&userId="+this.userId)
+
+            },
 
         },
         mounted(){
