@@ -151,7 +151,7 @@ export default new Router({
           path:'/commodityDetail',
           name:'commodityDetail',
           component:commodityDetail,
-      },
+      },{
           path:'/myOrder',
           name:'myOrder',
           component:myOrder,
