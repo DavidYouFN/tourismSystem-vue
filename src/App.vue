@@ -2,10 +2,11 @@
   <div id="app" class="fillcontain">
     <router-view></router-view>
   </div>
-  </div>
+
 </template>
 
 <style lang="scss">
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -22,6 +22,8 @@ import adminSet from './views/adminSet.vue'
 import adminLogin from './views/adminLogin.vue'
 import commodityDetail from './views/TMCommodityDetail.vue'
 import visitor from './views/visitor.vue'
+import TMTourList  from './views/TMTour/TMTourList.vue'
+import TMTourDetail  from './views/TMTour/TMTourDetail.vue'
 
 
 Vue.use(Router)
@@ -149,7 +151,19 @@ export default new Router({
           path:'/commodityDetail',
           name:'commodityDetail',
           component:commodityDetail,
-      },
+      },{
+          path:'/myOrder',
+          name:'myOrder',
+          component:myOrder,
+      },{
+          path:"/tourList",
+          name:"tourList",
+          component:TMTourList
+      },{
+          path:"/tourDetail",
+          name:"tourDetail",
+          component:TMTourDetail
+      }
   ]
 })
 

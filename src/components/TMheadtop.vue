@@ -98,13 +98,14 @@
 </template>
 
 <style>
-    body {
-        background-color: green;
-    }
+    
 </style>
 
 <script>
     export default {
+        props:{
+            activeIndex2:String
+        },
         data() {
             return {msg: '初始代模板'}
         }

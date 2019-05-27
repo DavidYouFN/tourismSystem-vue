@@ -47,8 +47,8 @@
                         <img src="@/assets/img/1.png" style="width: 23%;padding-left: 50%">
                     </el-col>
                     <el-col :span="8">
-                        <el-input placeholder="请输入内容" v-model="commodityInput" style="width: 100%;padding-right: 60%">
-                            <el-button slot="append" icon="el-icon-search"  @click="handleSearch"></el-button>
+                        <el-input placeholder="请输入内容" v-model="searchData" style="width: 100%;padding-right: 60%">
+                            <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
                         </el-input>
                     </el-col>
                     <el-col :span="10" class="pl-5">
@@ -1391,17 +1391,10 @@
         },
         data() {
             return {
-                commodityInput: '',
+                searchData: '',
                 Imgs: {
                     picList: [
-                        {id: 0, idView: require('../assets/images/pic06.jpg')},
-                        {id: 1, idView: require('../assets/images/pic01.jpg')},
-                        {id: 2, idView: require('../assets/images/pic02.jpg')},
-                        {id: 3, idView: require('../assets/images/pic03.jpg')},
-                        {id: 4, idView: require('../assets/images/pic04.jpg')},
-                        {id: 5, idView: require('../assets/images/pic05.jpg')},
-                        {id: 6, idView: require('../assets/images/pic07.jpg')},
-                        {id: 7, idView: require('../assets/images/pic08.jpg')},
+
                     ]
                 },
                 imgList: [
@@ -1430,27 +1423,39 @@
                 userName:'',
             }
         },
-        method:{
-            handleSearch(){
-                console.log(111)
-                let param = new URLSearchParams();
-                param.append("commodityName",this.commodityInput)
-                this.$axios.get("commodity/getCommodityInfoByName",param)
-                    .then(res=>{
-                        if (res.data.state==200){
-                            this.$router.push({path:"/commodityDetail"})
-                        }
-                    })
+        methods:{
+            showTourList(commodityId){
+                sessionStorage.commodityId=commodityId;
+                this.$router.push("/tourDetail")
+            },
+            getImg(){
+                this.$axios.get("commodity/getImg")
+                .then(res=>{
+                    if(res.data.state==200){
+                        this.Imgs.picList=res.data.data
+                    }else{
+                        this.$alert(res.data.msg,"提示")
+                    }
+                })
+            },
+            search(){
+                // if(this.searchData==""){
+                //     this.alert("请输入内容","提示")
+                //     return;
+                // }
+                sessionStorage.searchData=this.searchData;
+                this.$router.push("/tourList")
             }
         },
         mounted(){
             this.userName=sessionStorage.getItem("username");
+            this.getImg()
         },
 
     }
 </script>
 
-<style>
+<style scoped>
     .el-col {
         border-radius: 4px;
     }

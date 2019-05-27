@@ -5,7 +5,7 @@ import store from './store'
 import element from 'element-ui'
 import less from 'less'
 import 'element-ui/lib/theme-chalk/index.css';
-import 'element-ui/lib/theme-default/index.css';
+// import 'element-ui/lib/theme-default/index.css';
 import '@/assets/css/gobal.css';
 import '@/assets/css/fontawesome.min.css';
 import '@/assets/css/regular.min.css';
