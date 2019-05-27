@@ -85,7 +85,7 @@
 	}
     .admin_set{
         width: 60%;
-        background-color: #F9FAFC;
+        background-color: #F5F5F5;
         min-height: 400px;
         margin: 20px auto 0;
         border-radius: 10px;

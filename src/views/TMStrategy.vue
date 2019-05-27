@@ -184,9 +184,26 @@
                     </el-row>
                     </el-col>
                     <el-col :span="6" class="strategyTextBox">
-                        <span style="font-size: 18px"><strong>最新点评</strong></span>
+                        <span style="font-size: 18px"><strong>用户发布攻略中心 </strong></span>
+                        <el-button
+                                style="margin-top: 0%"
+                                size="max"
+                                @click="handleEdit()">发布个人攻略
+                        </el-button>
+                        <el-dialog title="发布个人攻略" :visible.sync="dialogFormVisible">
+                            <div class="edit_container">
+                                <quill-editor v-model="content"
+                                              ref="myQuillEditor"
+                                              class="editer"
+                                              :options="editorOption"
+                                              @ready="onEditorReady($event)">
+                                </quill-editor>
+                            </div>
+                            <div class="submit_btn">
+                                <el-button type="primary" @click="submit()">提交</el-button>
+                            </div>
+                        </el-dialog>
                         <hr style="width: 80%">
-
                     </el-col>
             </el-main>
         </el-contaniner>
@@ -342,10 +359,10 @@
 </template>
 
 <script>
-
+    import { quillEditor } from 'vue-quill-editor'
     export default {
         components:{
-
+            quillEditor,
         },
         data() {
             return {
@@ -371,43 +388,34 @@
                 radio: 3,
                 activeName: 'first',
                 userName:'',
+                content: '',
+                editorOption: {
+
+                },
+                dialogFormVisible: false,
             }
         },
         method:{
-            checkUserLogin:function(){
-                this.$axios.get("user/getLoginUserInfo")
-                    .then(res=>{
-                        if(res.data.state==200){
-                            sessionStorage.workcode=res.data.data.workCode;
-                            sessionStorage.username=res.data.data.userRealname;
-                            sessionStorage.roleId=res.data.data.roleId;
-                        }
-                        else{
-                            sessionStorage.workcode='';
-                            sessionStorage.username='';
-                            this.$alert("用户未登录", '提示', {
-                                confirmButtonText: '确定',
-                                callback: action => {
-                                    clearInterval(this.setIntervalObj)
-                                    this.$router.push('/login')
-                                }
-                            });
-                        }
-                    })
+            handleEdit(){
+                console.log(1111112222);
+                this.dialogFormVisible = true;
             },
+            dialogFormVisible(row) {
+                this.dialogFormVisible = false;
+            },
+            submit(){
+                console.log(111222)
+            }
         },
         mounted(){
-            this.activeIndex=this.menuIndex;
+            this.userId=sessionStorage.getItem("userId");
             this.userName=sessionStorage.getItem("username");
-            this.checkUserLogin();
-            this.setIntervalObj=setInterval(res=>{
-                this.checkUserLogin()
-            },60000)
-        }
+        },
     }
 </script>
 
-<style>
+<style lang="less">
+    @import '../assets/less/main.less';
     .el-col {
         border-radius: 4px;
     }
@@ -494,5 +502,14 @@
     .strategyTextBox{
         background-color: #ffffff;
     }
-
+    .edit_container{
+        padding: 40px;
+        margin-bottom: 40px;
+    }
+    .editer{
+        height: 350px;
+    }
+    .submit_btn{
+        text-align: center;
+    }
 </style>

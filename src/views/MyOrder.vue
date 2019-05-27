@@ -28,9 +28,84 @@
             </el-table-column>
         </el-table>
         </el-tab-pane>
-        <el-tab-pane label="未出行">未出行</el-tab-pane>
-        <el-tab-pane label="待付款">待付款</el-tab-pane>
-        <el-tab-pane label="待评价">待评价</el-tab-pane>
+        <el-tab-pane label="未出行">
+            <el-table
+                    :data="tableData1"
+                    @expand='expand'
+                    :expand-row-keys='expendRow'
+                    :row-key="row => row.index"
+                    style="width: 100%">
+                <el-table-column
+                        label="订单 ID"
+                        prop="orderId">
+                </el-table-column>
+                <el-table-column
+                        label="订单日期"
+                        prop="orderDate"
+                        :formatter="formatDate">
+                </el-table-column>
+                <el-table-column
+                        label="订单金额"
+                        prop="orderMoney">
+                </el-table-column>
+                <el-table-column
+                        label="订单评价状态"
+                        prop="orderState">
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待付款">
+            <el-table
+                    :data="tableData2"
+                    @expand='expand'
+                    :expand-row-keys='expendRow'
+                    :row-key="row => row.index"
+                    style="width: 100%">
+                <el-table-column
+                        label="订单 ID"
+                        prop="orderId">
+                </el-table-column>
+                <el-table-column
+                        label="订单日期"
+                        prop="orderDate"
+                        :formatter="formatDate">
+                </el-table-column>
+                <el-table-column
+                        label="订单金额"
+                        prop="orderMoney">
+                </el-table-column>
+                <el-table-column
+                        label="订单评价状态"
+                        prop="orderState">
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待评价">
+            <el-table
+                    :data="tableData3"
+                    @expand='expand'
+                    :expand-row-keys='expendRow'
+                    :row-key="row => row.index"
+                    style="width: 100%">
+                <el-table-column
+                        label="订单 ID"
+                        prop="orderId">
+                </el-table-column>
+                <el-table-column
+                        label="订单日期"
+                        prop="orderDate"
+                        :formatter="formatDate">
+                </el-table-column>
+                <el-table-column
+                        label="订单金额"
+                        prop="orderMoney">
+                </el-table-column>
+                <el-table-column
+                        label="订单评价状态"
+                        prop="orderState">
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
     </el-tabs>
     </div>
 </template>
@@ -51,6 +126,24 @@
                     orderMoney:'',
                     orderState:''
                 }],
+                tableData1: [{
+                    orderId:'',
+                    orderDate:'',
+                    orderMoney:'',
+                    orderState:''
+                }],
+                tableData2: [{
+                    orderId:'',
+                    orderDate:'',
+                    orderMoney:'',
+                    orderState:''
+                }],
+                tableData3: [{
+                    orderId:'',
+                    orderDate:'',
+                    orderMoney:'',
+                    orderState:''
+                }],
             }
         },
         created(){
@@ -63,6 +156,24 @@
                     .then(res=>{
                         if (res.data.state==200){
                             this.tableData=res.data.data;
+                        }
+                    })
+                this.$axios.get("order/getNoTripOrder?userId="+sessionStorage.userId)
+                    .then(res=>{
+                        if (res.data.state==200){
+                            this.tableData1=res.data.data;
+                        }
+                    })
+                this.$axios.get("order/getObligationsOrder?userId="+sessionStorage.userId)
+                    .then(res=>{
+                        if (res.data.state==200){
+                            this.tableData2=res.data.data;
+                        }
+                    })
+                this.$axios.get("order/getToBeEvaluatedOrder?userId="+sessionStorage.userId)
+                    .then(res=>{
+                        if (res.data.state==200){
+                            this.tableData3=res.data.data;
                         }
                     })
             },

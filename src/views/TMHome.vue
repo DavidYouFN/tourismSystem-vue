@@ -47,8 +47,8 @@
                         <img src="@/assets/img/1.png" style="width: 23%;padding-left: 50%">
                     </el-col>
                     <el-col :span="8">
-                        <el-input placeholder="请输入内容" v-model="input" style="width: 100%;padding-right: 60%">
-                            <el-button slot="append" icon="el-icon-search"></el-button>
+                        <el-input placeholder="请输入内容" v-model="commodityInput" style="width: 100%;padding-right: 60%">
+                            <el-button slot="append" icon="el-icon-search"  @click="handleSearch"></el-button>
                         </el-input>
                     </el-col>
                     <el-col :span="10" class="pl-5">
@@ -1391,7 +1391,7 @@
         },
         data() {
             return {
-                input: '',
+                commodityInput: '',
                 Imgs: {
                     picList: [
                         {id: 0, idView: require('../assets/images/pic06.jpg')},
@@ -1408,9 +1408,9 @@
                     {id: 0, idView: require('../assets/img/a.jpg')},
                     {id: 1, name: '详情', idView: require('../assets/img/b.jpg')},
                     {id: 2, name: '推荐', idView: require('../assets/img/c.jpg')},
-                    {id: 2, name: '推荐', idView: require('../assets/img/d.jpg')},
-                    {id: 2, name: '推荐', idView: require('../assets/img/e.jpg')},
-                    {id: 2, name: '推荐', idView: require('../assets/img/f.jpg')}
+                    {id: 3, name: '推荐', idView: require('../assets/img/d.jpg')},
+                    {id: 4, name: '推荐', idView: require('../assets/img/e.jpg')},
+                    {id: 5, name: '推荐', idView: require('../assets/img/f.jpg')}
                 ],
                 tabPosition: 'left',
                 form: {
@@ -1431,6 +1431,17 @@
             }
         },
         method:{
+            handleSearch(){
+                console.log(111)
+                let param = new URLSearchParams();
+                param.append("commodityName",this.commodityInput)
+                this.$axios.get("commodity/getCommodityInfoByName",param)
+                    .then(res=>{
+                        if (res.data.state==200){
+                            this.$router.push({path:"/commodityDetail"})
+                        }
+                    })
+            }
         },
         mounted(){
             this.userName=sessionStorage.getItem("username");

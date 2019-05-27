@@ -40,15 +40,10 @@
             </el-header>
             <el-main>
                 <el-row>
-                    <el-col :span="6">
+                    <el-col :span="8">
                         <img src="@/assets/img/1.png" style="width: 23%;padding-left: 50%">
                     </el-col>
-                    <el-col :span="8">
-                        <el-input placeholder="请输入内容" v-model="input" style="width: 100%;padding-right: 60%">
-                            <el-button slot="append" icon="el-icon-search"></el-button>
-                        </el-input>
-                    </el-col>
-                    <el-col :span="10" class="pl-5">
+                    <el-col :span="16" class="pl-5">
                         境内联系方式: 800820
                         (或)9557957
                     </el-col>
@@ -91,89 +86,7 @@
         </el-container>
 
         <el-container>
-            <el-aside width="200px" style="margin-left: 9%;box-shadow: 0px 0px 15px #888888;" class="mt-3">
-                <el-row class="tac">
-                    <el-col>
-                        <h5><span class="el-dropdown-link">我的畅游首页</span></h5>
-                        <el-menu
-                                default-active="2"
-                                class="el-menu-vertical-demo"
-                                @open="handleOpen"
-                                @close="handleClose"
-                                background-color="#E6E6FA"
-                                text-color="#000"
-                                active-text-color="#409EFF">
-                            <el-submenu index="1">
-                                <template slot="title">
-                                    <span class="mr-5">订单</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="1-1"><span class="mr-5" @click="showOrder()">全部订单</span></el-menu-item>
-                                </el-menu-item-group>
-                                <!--<el-submenu index="1-4">-->
-                                <!--<template slot="title">选项4</template>-->
-                                <!--<el-menu-item index="1-4-1">选项1</el-menu-item>-->
-                                <!--</el-submenu>-->
-                            </el-submenu>
-                            <el-submenu index="2">
-                                <template slot="title">
-                                    <span class="mr-5">钱包</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="2-1"><span class="mr-5" @click="showAccount()">我的钱包</span></el-menu-item>
-                                </el-menu-item-group>
-                            </el-submenu>
-                            <el-submenu index="3">
-                                <template slot="title">
-                                    <span class="mr-5">优惠券</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="3-1"><span class="mr-5">我的优惠券</span></el-menu-item>
-                                </el-menu-item-group>
-                            </el-submenu>
-                            <el-submenu index="4">
-                                <template slot="title">
-                                    <span class="mr-5">积分</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="4-1"><span class="mr-5">我的积分</span></el-menu-item>
-                                </el-menu-item-group>
-                            </el-submenu>
-                            <el-submenu index="5">
-                                <template slot="title">
-                                    <span class="mr-5">收藏</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="5-1"><span class="mr-5">我的收藏</span></el-menu-item>
-                                </el-menu-item-group>
-                            </el-submenu>
-                            <el-submenu index="6">
-                                <template slot="title">
-                                    <span class="mr-5">个人中心</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="6-1"><span class="mr-5" @click="showInfo()">我的信息</span></el-menu-item>
-                                </el-menu-item-group>
-                            </el-submenu>
-                            <el-submenu index="7">
-                                <template slot="title">
-                                    <span class="mr-5">常用信息</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <el-menu-item index="7-1"><span class="mr-5">常用旅客信息</span></el-menu-item>
-                                    <el-menu-item index="7-2"><span class="mr-5">常用联系人</span></el-menu-item>
-                                    <el-menu-item index="7-3"><span class="mr-5">常用地址</span></el-menu-item>
-                                </el-menu-item-group>
-                            </el-submenu>
-                        </el-menu>
-                    </el-col>
-                </el-row>
-            </el-aside>
-            <el-main>
-                <Tm-Account v-if="isShowAccount"></Tm-Account>
-                <my-order v-if="isShowMyOrder"></my-order>
-                <my-info v-if="isShowMyInfo"></my-info>
-            </el-main>
+
         </el-container>
 
     </div>
@@ -192,9 +105,6 @@
         data() {
             return {
                 input: '',
-                isShowAccount:false,
-                isShowMyOrder:false,
-                isShowMyInfo:false,
                 userName:'',
             }
         },
@@ -205,21 +115,7 @@
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             },
-            showAccount(){
-                this.isShowAccount=true;
-                this.isShowMyOrder=false;
-                this.isShowMyInfo=false;
-            },
-            showOrder(){
-                this.isShowMyOrder=true;
-                this.isShowAccount=false;
-                this.isShowMyInfo=false;
-            },
-            showInfo(){
-                this.isShowMyInfo=true;
-                this.isShowAccount=false;
-                this.isShowMyOrder=false;
-            }
+
         },
         mounted(){
             this.userId=sessionStorage.getItem("userId");
