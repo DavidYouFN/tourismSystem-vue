@@ -21,6 +21,8 @@ import strategy from './views/TMStrategy.vue'
 import adminSet from './views/adminSet.vue'
 import myOrder from './views/MyOrder.vue'
 import adminLogin from './views/adminLogin.vue'
+import TMTourList  from './views/TMTour/TMTourList.vue'
+import TMTourDetail  from './views/TMTour/TMTourDetail.vue'
 
 
 Vue.use(Router)
@@ -144,6 +146,14 @@ export default new Router({
           path:'/myOrder',
           name:'myOrder',
           component:myOrder,
+      },{
+          path:"/tourList",
+          name:"tourList",
+          component:TMTourList
+      },{
+          path:"/tourDetail",
+          name:"tourDetail",
+          component:TMTourDetail
       }
   ]
 })

@@ -83,7 +83,7 @@
     }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	@import '../assets/less/main.less';
     .table_container{
         padding: 20px;

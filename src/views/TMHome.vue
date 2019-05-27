@@ -47,8 +47,8 @@
                         <img src="@/assets/img/1.png" style="width: 23%;padding-left: 50%">
                     </el-col>
                     <el-col :span="8">
-                        <el-input placeholder="请输入内容" v-model="input" style="width: 100%;padding-right: 60%">
-                            <el-button slot="append" icon="el-icon-search"></el-button>
+                        <el-input placeholder="请输入内容" v-model="searchData" style="width: 100%;padding-right: 60%">
+                            <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
                         </el-input>
                     </el-col>
                     <el-col :span="10" class="pl-5">
@@ -243,7 +243,7 @@
                                 </el-tab-pane>
                                 <el-tab-pane label="酒店团购" name="third">
                                     <div class="mb-5">
-                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                         <span style="padding-right: 33%">热门团购 : <span class="text-primary">度假公寓 别墅轰趴 情侣酒店 住店游玩</span></span>
                                     </div>
                                     <el-form ref="form" :model="form" label-width="70px">
@@ -285,7 +285,7 @@
                                             </el-form-item>
                                         </el-row>
                                         <el-form-item>
-                                            <el-button type="primary" @click="onSubmit"style="width: 30%;margin-left: 60%;margin-top: 10%">搜索
+                                            <el-button type="primary" @click="onSubmit" style="width: 30%;margin-left: 60%;margin-top: 10%">搜索
                                             </el-button>
                                         </el-form-item>
                                     </el-form>
@@ -414,7 +414,7 @@
                                 </el-tab-pane>
                                 <el-tab-pane label="旅游团购" name="third">
                                     <div class="mb-5">
-                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                         <span style="padding-right: 26%">热门团购 : <span class="text-primary">爱情海三日游 马尔代夫七日游 旧金山一日游</span></span>
                                     </div>
                                     <el-form ref="form" :model="form" label-width="70px">
@@ -542,7 +542,7 @@
                                 </el-tab-pane>
                                 <el-tab-pane label="发现特价" name="third">
                                     <div class="mb-5">
-                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                     </div>
                                     <el-form ref="form" :model="form" label-width="70px">
                                         <el-form-item label="目的地">
@@ -1100,7 +1100,7 @@
                                 <el-tab-pane label="国内美食" name="first">
                                     <el-form ref="form" :model="form" label-width="70px" >
                                         <div class="mb-5">
-                                            <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                            <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                         </div>
                                         <el-row>
                                             <el-col :span="12">
@@ -1148,7 +1148,7 @@
                                 <el-tab-pane label="境外美食" name="second">
                                     <el-form ref="form" :model="form" label-width="70px" >
                                         <div class="mb-5">
-                                            <span style="padding-right: 30%">热门境外 : <span class="text-primary">美国 英国 法国 俄罗斯 韩国 墨西哥 西班牙</span></span></br>
+                                            <span style="padding-right: 30%">热门境外 : <span class="text-primary">美国 英国 法国 俄罗斯 韩国 墨西哥 西班牙</span></span><br>
                                         </div>
                                         <el-row>
                                             <el-col :span="12">
@@ -1215,7 +1215,7 @@
                 <el-tabs v-model="tourismIndex" @tab-click="handleClick">
                     <el-tab-pane label="热门" name="first">
                         <div class="img" v-for="item in Imgs.picList" :key="item.id">
-                            <img :src="item.idView">
+                            <img :src="item.commodityPicUrl" style="cursor:pointer" @click="showTourList(item.commodityId)">
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="特价旅游" name="second">配置管理</el-tab-pane>
@@ -1391,26 +1391,19 @@
         },
         data() {
             return {
-                input: '',
+                searchData: '',
                 Imgs: {
                     picList: [
-                        {id: 0, idView: require('../assets/images/pic06.jpg')},
-                        {id: 1, idView: require('../assets/images/pic01.jpg')},
-                        {id: 2, idView: require('../assets/images/pic02.jpg')},
-                        {id: 3, idView: require('../assets/images/pic03.jpg')},
-                        {id: 4, idView: require('../assets/images/pic04.jpg')},
-                        {id: 5, idView: require('../assets/images/pic05.jpg')},
-                        {id: 6, idView: require('../assets/images/pic07.jpg')},
-                        {id: 7, idView: require('../assets/images/pic08.jpg')},
+                       
                     ]
                 },
                 imgList: [
                     {id: 0, idView: require('../assets/img/a.jpg')},
                     {id: 1, name: '详情', idView: require('../assets/img/b.jpg')},
                     {id: 2, name: '推荐', idView: require('../assets/img/c.jpg')},
-                    {id: 2, name: '推荐', idView: require('../assets/img/d.jpg')},
-                    {id: 2, name: '推荐', idView: require('../assets/img/e.jpg')},
-                    {id: 2, name: '推荐', idView: require('../assets/img/f.jpg')}
+                    {id: 3, name: '推荐', idView: require('../assets/img/d.jpg')},
+                    {id: 4, name: '推荐', idView: require('../assets/img/e.jpg')},
+                    {id: 5, name: '推荐', idView: require('../assets/img/f.jpg')}
                 ],
                 tabPosition: 'left',
                 form: {
@@ -1430,16 +1423,39 @@
                 userName:'',
             }
         },
-        method:{
+        methods:{
+            showTourList(commodityId){
+                sessionStorage.commodityId=commodityId;
+                this.$router.push("/tourDetail")
+            },
+            getImg(){
+                this.$axios.get("commodity/getImg")
+                .then(res=>{
+                    if(res.data.state==200){
+                        this.Imgs.picList=res.data.data
+                    }else{
+                        this.$alert(res.data.msg,"提示")
+                    }
+                })
+            },
+            search(){
+                // if(this.searchData==""){
+                //     this.alert("请输入内容","提示")
+                //     return;
+                // }
+                sessionStorage.searchData=this.searchData;
+                this.$router.push("/tourList")
+            }
         },
         mounted(){
             this.userName=sessionStorage.getItem("username");
+            this.getImg()
         },
 
     }
 </script>
 
-<style>
+<style scoped>
     .el-col {
         border-radius: 4px;
     }
