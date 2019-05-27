@@ -243,7 +243,7 @@
                                 </el-tab-pane>
                                 <el-tab-pane label="酒店团购" name="third">
                                     <div class="mb-5">
-                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                         <span style="padding-right: 33%">热门团购 : <span class="text-primary">度假公寓 别墅轰趴 情侣酒店 住店游玩</span></span>
                                     </div>
                                     <el-form ref="form" :model="form" label-width="70px">
@@ -285,7 +285,7 @@
                                             </el-form-item>
                                         </el-row>
                                         <el-form-item>
-                                            <el-button type="primary" @click="onSubmit"style="width: 30%;margin-left: 60%;margin-top: 10%">搜索
+                                            <el-button type="primary" @click="onSubmit" style="width: 30%;margin-left: 60%;margin-top: 10%">搜索
                                             </el-button>
                                         </el-form-item>
                                     </el-form>
@@ -414,7 +414,7 @@
                                 </el-tab-pane>
                                 <el-tab-pane label="旅游团购" name="third">
                                     <div class="mb-5">
-                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                         <span style="padding-right: 26%">热门团购 : <span class="text-primary">爱情海三日游 马尔代夫七日游 旧金山一日游</span></span>
                                     </div>
                                     <el-form ref="form" :model="form" label-width="70px">
@@ -542,7 +542,7 @@
                                 </el-tab-pane>
                                 <el-tab-pane label="发现特价" name="third">
                                     <div class="mb-5">
-                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                        <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                     </div>
                                     <el-form ref="form" :model="form" label-width="70px">
                                         <el-form-item label="目的地">
@@ -1100,7 +1100,7 @@
                                 <el-tab-pane label="国内美食" name="first">
                                     <el-form ref="form" :model="form" label-width="70px" >
                                         <div class="mb-5">
-                                            <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span></br>
+                                            <span style="padding-right: 30%">热门城市 : <span class="text-primary">上海 广州 深圳 北京 成都 三亚 厦门 青岛</span></span><br>
                                         </div>
                                         <el-row>
                                             <el-col :span="12">
@@ -1148,7 +1148,7 @@
                                 <el-tab-pane label="境外美食" name="second">
                                     <el-form ref="form" :model="form" label-width="70px" >
                                         <div class="mb-5">
-                                            <span style="padding-right: 30%">热门境外 : <span class="text-primary">美国 英国 法国 俄罗斯 韩国 墨西哥 西班牙</span></span></br>
+                                            <span style="padding-right: 30%">热门境外 : <span class="text-primary">美国 英国 法国 俄罗斯 韩国 墨西哥 西班牙</span></span><br>
                                         </div>
                                         <el-row>
                                             <el-col :span="12">
@@ -1215,7 +1215,7 @@
                 <el-tabs v-model="tourismIndex" @tab-click="handleClick">
                     <el-tab-pane label="热门" name="first">
                         <div class="img" v-for="item in Imgs.picList" :key="item.id">
-                            <img :src="item.idView">
+                            <img :src="item.commodityPicUrl" @click="showTourList(item.commodityId)" style="cursor:pointer">
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="特价旅游" name="second">配置管理</el-tab-pane>

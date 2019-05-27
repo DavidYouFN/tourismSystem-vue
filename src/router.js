@@ -24,6 +24,7 @@ import commodityDetail from './views/TMCommodityDetail.vue'
 import visitor from './views/visitor.vue'
 import TMTourList  from './views/TMTour/TMTourList.vue'
 import TMTourDetail  from './views/TMTour/TMTourDetail.vue'
+import myOrder  from './views/MyOrder.vue'
 
 
 Vue.use(Router)
