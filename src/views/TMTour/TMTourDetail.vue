@@ -33,7 +33,7 @@
                   <span class="fs12 ml-1">起</span>
                 </el-row>
                 <el-row class="mt-2">
-                  <button class="bgOr">立即预定</button>
+                  <button class="bgOr" @click="addShopCar()">加入收藏</button>
                 </el-row>
               </el-col>
             </el-row>
@@ -71,6 +71,22 @@ export default {
           this.$alert(res.data.msg, "提示");
         }
       });
+    },
+    addShopCar(){
+      let param=new FormData();
+      param.append("commodityId",this.commodityData.commodityInfo.commodityId)
+      param.append("commodityName",this.commodityData.commodityInfo.commodityName)
+      param.append("commodityNumber",1)
+      param.append("commodityPrice",this.commodityData.commodityInfo.commodityPrice)
+      param.append("commodityTotalPrice",this.commodityData.commodityInfo.commodityPrice)
+      this.$axios.post("shopCar/addShopCar",param)
+      .then(res=>{
+        if(res.data.state==200){
+          this.$router.push("/shopCar")
+        }else{
+          this.$alert(res.data.msg,"提示")
+        }
+      })
     }
   },
   mounted() {

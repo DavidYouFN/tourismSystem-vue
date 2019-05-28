@@ -58,6 +58,7 @@
 					  </el-row>
 				  </el-col>
 				  <el-col :span="3" class="text-right mt-1 ml-4 moneyCss">
+						
 						<span class=" fs12 mr-1" >¥</span>
 					  <span style="font-size:25px">{{item.commodityDetail.commodityPrice}}</span>
 						<span class=" fs12 ml-1" >起</span>
