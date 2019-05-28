@@ -25,6 +25,7 @@ import visitor from './views/visitor.vue'
 import TMTourList  from './views/TMTour/TMTourList.vue'
 import TMTourDetail  from './views/TMTour/TMTourDetail.vue'
 import myOrder  from './views/MyOrder.vue'
+import shopCar  from './views/ShopCar.vue'
 
 
 Vue.use(Router)
@@ -164,7 +165,13 @@ export default new Router({
           path:"/tourDetail",
           name:"tourDetail",
           component:TMTourDetail
-      }
+      },
+      {
+        path:"/shopCar",
+        name:"shopCar",
+        component:shopCar
+    },
+      
   ]
 })
 
