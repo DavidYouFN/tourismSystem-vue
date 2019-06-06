@@ -36,7 +36,7 @@
 			<span style="font-size:12px" class="">总计：</span>
 			<span style="font-size:18px;color: rgb(247, 111, 32);" class="mr-1">¥</span>
 			<span class="mr-3 priceCss">{{totalPrice}}</span>
-			<el-button type="primary" >结算</el-button>
+			<el-button type="primary" @click="pay()">结算</el-button>
 		</el-row>
 		
       </el-main>
@@ -56,7 +56,9 @@ export default {
   data(){
 	  return{
 		  tableData:[],
-		  totalPrice:0
+		  totalPrice:0,
+          commodityDescribe:'',
+          commodityPrice:'',
 	  }
   },
   methods: {
@@ -92,10 +94,52 @@ export default {
 				}
 			})
 		})
-	}
+	},
+      getCommodityDetail(){
+          let param = new FormData();
+          param.append("commodityId", sessionStorage.commodityId);
+          this.$axios.post("commodity/getCommodityDetail", param).then(res => {
+              if (res.data.state == 200) {
+                  this.commodityDescribe = res.data.data.commodityInfo.commodityDescribe;
+                  this.commodityPrice=res.data.data.commodityInfo.commodityPrice;
+              }
+          });
+      },
+      pay(){
+          window.open("http://localhost:8081/order/pay?property="+this.totalPrice)
+          this.$axios.post("order/generateOrder?money="+this.totalPrice)
+              .then(res=>{
+                  if (res.data.state==200){
+                      this.orderDetailId=res.data.data
+                      /*this.$router.push("/order")*/
+                      let param = new FormData();
+                      param.append("commodityId", sessionStorage.commodityId);
+                      console.log(sessionStorage.commodityId)
+                      param.append("orderDetailId",this.orderDetailId);
+                      param.append("commodityPrice", this.totalPrice);
+                      param.append("commodityDescribe", this.commodityDescribe);
+                      this.$axios.post("order/generateOrderDetail",param)
+                          .then(res=>{
+                              if (res.data.state==200){
+                                  this.$router.push("/order")
+                              }
+                          })
+                  }
+              })
+          let param=new FormData();
+          param.append("commodityId",sessionStorage.commodityId)
+          console.log(sessionStorage.commodityId)
+          this.$axios.post("shopCar/delShopCar",param)
+              .then(res=>{
+                  if (res.data.state==200){
+                      this.getShopCarList()
+                  }
+              })
+      }
   },
   mounted() {
-    this.getShopCarList();
+      this.getShopCarList();
+      this.getCommodityDetail();
   }
 };
 </script>

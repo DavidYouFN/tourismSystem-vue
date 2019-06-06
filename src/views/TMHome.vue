@@ -23,7 +23,7 @@
                                         <span class="el-dropdown-link">我的畅游<i
                                                 class="el-icon-arrow-down el-icon--right"></i></span>
                                         <el-dropdown-menu slot="dropdown">
-                                            <el-dropdown-item class="el-dropdown-link"><router-link class="router-link-active" to="/myAccount">我的收藏</router-link></el-dropdown-item>
+                                            <el-dropdown-item class="el-dropdown-link"><router-link class="router-link-active" to="/shopCar">我的收藏</router-link></el-dropdown-item>
                                             <el-dropdown-item class="el-dropdown-link"><router-link class="router-link-active" to="/myAccount">我的优惠券</router-link></el-dropdown-item>
                                             <el-dropdown-item class="el-dropdown-link"><router-link class="router-link-active" to="/myAccount">我的钱包</router-link></el-dropdown-item>
                                             <el-dropdown-item class="el-dropdown-link"><router-link class="router-link-active" to="/myAccount">常用信息</router-link></el-dropdown-item>
@@ -1218,14 +1218,6 @@
                             <img :src="item.commodityPicUrl" @click="showTourList(item.commodityId)" style="cursor:pointer">
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="特价旅游" name="second">配置管理</el-tab-pane>
-                    <el-tab-pane label="出境游" name="third">角色管理</el-tab-pane>
-                    <el-tab-pane label="境内游" name="fourth">定时任务补偿</el-tab-pane>
-                    <el-tab-pane label="周边游" name="fifth">定时任务补偿</el-tab-pane>
-                    <el-tab-pane label="门票" name="sixth">定时任务补偿</el-tab-pane>
-                    <el-tab-pane label="当地玩乐" name="seventh">定时任务补偿</el-tab-pane>
-                    <el-tab-pane label="主题游" name="eighth">定时任务补偿</el-tab-pane>
-                    <el-tab-pane label="高端游" name="ninth">定时任务补偿</el-tab-pane>
                 </el-tabs>
                 </div>
             </el-main>

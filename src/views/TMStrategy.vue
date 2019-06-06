@@ -204,6 +204,21 @@
                             </div>
                         </el-dialog>
                         <hr style="width: 80%">
+                        <el-tabs type="border-card" style="width: 80%;margin-left: 10%">
+                            <el-tab-pane label="全部攻略">
+                                <el-table
+                                        :data="tableData"
+                                        @expand='expand'
+                                        :expand-row-keys='expendRow'
+                                        :row-key="row => row.index"
+                                        style="width: 100%">
+                                    <el-table-column
+                                            label="攻略详情"
+                                            prop="strategy">
+                                    </el-table-column>
+                                </el-table>
+                            </el-tab-pane>
+                        </el-tabs>
                     </el-col>
             </el-main>
         </el-contaniner>
@@ -392,19 +407,46 @@
                 editorOption: {
 
                 },
+                tableData:[{
+                    strategy:''
+                }],
                 dialogFormVisible: false,
             }
         },
-        method:{
+        created(){
+            this.initData()
+        },
+        methods:{
             handleEdit(){
-                console.log(1111112222);
                 this.dialogFormVisible = true;
             },
             dialogFormVisible(row) {
                 this.dialogFormVisible = false;
             },
+            async initData(){
+                this.$axios.post("commodity/getUserStrategyList")
+                    .then(res=>{
+                        if (res.data.state==200){
+                            console.log(res.data)
+                            this.tableData[0].strategy=res.data.data
+                        }
+                    })
+            },
             submit(){
-                console.log(111222)
+                [this.content].join("");
+                console.log(this.content)
+                let param = new URLSearchParams();
+                param.append('userId', this.userId);
+                param.append('strategy', this.content);
+                this.$axios.post("commodity/addStrategy",param)
+                    .then(res=>{
+                        if (res.data.state==200){
+                            this.$message({
+                                type: 'success',
+                                message: '发布成功，等待审核'
+                            });
+                        }
+                    })
             }
         },
         mounted(){

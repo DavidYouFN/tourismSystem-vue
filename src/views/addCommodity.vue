@@ -81,6 +81,7 @@
     export default {
     	data(){
     		return {
+    		    sellerName:'',
     			categoryForm: {
                     categoryList: [],
     				categorySelect: '',
@@ -253,18 +254,40 @@
                                         stock: '',
                                         imgURL: '',
                                     }
+                                    this.$axios.get("user/getSellerInfoBySellerId?sellerId="+sessionStorage.sellerId)
+										.then(response=>{
+										    if (response.data.state==200){
+										        this.sellerName=response.data.data.sellerName
+										        this.phone=response.data.data.phone
+                                                let param1 = new FormData();
+                                                param1.append('commodityId', res.data.data.commodityId);
+                                                param1.append('commodityName', res.data.data.commodityName);
+                                                param1.append('commodityPrice',  res.data.data.commodityPrice);
+                                                param1.append('commodityDescribe', res.data.data.commodityDescribe);
+                                                param1.append('supplier', this.sellerName);
+                                                param1.append('sellerContactInformation', this.phone);
+                                                console.log(this.phone)
+                                                this.$axios.post("commodity/addCommodity",param1)
+                                                    .then(res=>{
+                                                        if (res.data.state==200){
+                                                        }
+                                                    })
+											}
+										})
+
                                 } else {
                                     this.$notify.error({
                                         title: '错误',
                                         message: '请检查输入是否正确',
                                         offset: 100
                                     });
-
                                     return false;
                                 }
+
                             })
                     }
                 })
+
 		    }
 		}
     }

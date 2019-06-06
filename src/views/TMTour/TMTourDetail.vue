@@ -61,7 +61,7 @@ export default {
     };
   },
   methods: {
-    getCommidity() {
+      getCommodity() {
       let param = new FormData();
       param.append("commodityId", sessionStorage.commodityId);
       this.$axios.post("commodity/getCommodityDetail", param).then(res => {
@@ -91,7 +91,7 @@ export default {
   },
   mounted() {
     // alert(sessionStorage.commodityId)
-    this.getCommidity();
+    this.getCommodity();
   }
 };
 </script>

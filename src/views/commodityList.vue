@@ -50,7 +50,7 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <div class="Pagination">
+<!--            <div class="Pagination">
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
@@ -59,7 +59,7 @@
                         layout="total, prev, pager, next"
                         :total="count">
                 </el-pagination>
-            </div>
+            </div>-->
             <el-dialog title="修改商品信息" :visible.sync="dialogFormVisible">
                 <el-form v-model="form1" >
                     <el-form-item label="商品名称" >

@@ -20,7 +20,7 @@
                                     <el-dropdown>
                                         <span class="el-dropdown-link">我的畅游<i class="el-icon-arrow-down el-icon--right"></i></span>
                                         <el-dropdown-menu slot="dropdown">
-                                            <el-dropdown-item class="el-dropdown-link">我的收藏</el-dropdown-item>
+                                            <el-dropdown-item class="el-dropdown-link"><router-link class="router-link-active" to="/shopCar">我的收藏</router-link></el-dropdown-item>
                                             <el-dropdown-item class="el-dropdown-link">我的优惠券</el-dropdown-item>
                                             <el-dropdown-item class="el-dropdown-link">我的钱包</el-dropdown-item>
                                             <el-dropdown-item class="el-dropdown-link">常用信息</el-dropdown-item>
@@ -70,7 +70,7 @@
                     <el-menu-item index="2">自由行</el-menu-item>
                     <el-menu-item index="3">旅游</el-menu-item>
                     <el-menu-item index="4">酒店</el-menu-item>
-                    <el-menu-item index="5">攻略</el-menu-item>
+                    <el-menu-item index="5"><router-link to="/strategy" style="text-decoration: none">攻略</router-link></el-menu-item>
                     <el-menu-item index="6">跟团游</el-menu-item>
                     <el-menu-item index="7">高端游</el-menu-item>
                     <el-menu-item index="8">特价旅游</el-menu-item>

@@ -13,9 +13,6 @@
 					<el-form-item label="店铺咨询号码" prop="shopPhone">
 						<el-input v-model.number="formData.shopPhone" maxLength="11"></el-input>
 					</el-form-item>
-					<el-form-item label="店铺类型" prop="shopType">
-						<el-input v-model="formData.shopType"></el-input>
-					</el-form-item>
 					<el-form-item label="商家姓名" prop="sellerName">
 						<el-input v-model="formData.sellerName"></el-input>
 					</el-form-item>
@@ -53,7 +50,6 @@
                     shopName: '', //店铺名称
                     shopArea: '', //地址
                     shopPhone: '',
-                    shopType: '',
 					sellerId:'',
                     sellerName:'',
 					phone:'',
@@ -167,7 +163,6 @@
                 param.append('shopName', this.formData.shopName);
                 param.append('shopArea', this.formData.shopArea);
                 param.append('shopPhone', this.formData.shopPhone);
-                param.append('shopType', this.formData.shopType);
                 param.append('sellerId', this.formData.sellerId);
                 param.append('sellerName', this.formData.sellerName);
                 param.append('phone', this.formData.phone);

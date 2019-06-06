@@ -34,7 +34,7 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <div class="Pagination">
+<!--            <div class="Pagination">
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
@@ -43,7 +43,7 @@
                         layout="total, prev, pager, next"
                         :total="count">
                 </el-pagination>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>
@@ -84,7 +84,9 @@
         },
         methods: {
             async checkStrategy(){
-                this.$axios.post("commodity/checkStrategy?userId=",this.tableData[0].userId)
+                let param = new URLSearchParams();
+                param.append('userId', this.tableData[0].userId);
+                this.$axios.post("commodity/checkStrategy",param)
                     .then(res=>{
                         this.$message({
                             type: 'success',
